@@ -1,245 +1,303 @@
-# LinkedIn Professional Guru
+# 🚀 LinkedIn Professional Guru
 
-**AI-powered Career Intelligence Platform using n8n and Ollama**
+<div align="center">
 
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub Release](https://img.shields.io/github/v/release/sahillad96/linkedin-professional-guru)](releases)
-[![Status](https://img.shields.io/badge/Status-Prototype-blue.svg)](#project-status)
+![LinkedIn Professional Guru](./assets/logo.png)
 
-## Overview
+**AI-Powered Career Intelligence Platform Using 100% Local AI**
 
-LinkedIn Professional Guru is a fully local, open-source AI Career Intelligence Platform that analyzes LinkedIn profiles, resumes, and job descriptions using large language models—without relying on cloud AI services or paid APIs.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-green.svg)](CHANGELOG.md)
+[![Docker](https://img.shields.io/badge/docker-enabled-blue.svg)](./docker/)
+[![TypeScript](https://img.shields.io/badge/typescript-enabled-blue.svg)](./)
+[![Next.js](https://img.shields.io/badge/next.js-13+-black.svg)](https://nextjs.org)
 
-Built with **n8n** for workflow automation and **Ollama** for local LLM inference, this platform delivers:
+[Features](#features) • [Installation](#installation) • [Documentation](#documentation) • [Roadmap](#roadmap) • [Contributing](#contributing)
 
-- 🧠 **LinkedIn Profile Analysis** – Extract insights, skills, and career trajectory
-- 📄 **Resume Scoring & ATS Compatibility** – Analyze fit and suggest improvements
-- 💼 **Job-Resume Matching** – Compare resumes against job descriptions
-- 🎯 **Career Roadmaps** – Generate personalized progression paths
-- 🚀 **Learning Recommendations** – Identify skill gaps and certifications
-- 🏠 **100% Local & Open Source** – No vendor lock-in, no usage limits
+</div>
 
-## Quick Start
+---
+
+## 🎯 What is LinkedIn Professional Guru?
+
+LinkedIn Professional Guru is a modern, AI-powered career intelligence platform that helps professionals improve their careers using **completely local AI**. No API calls, no paid services, no cloud dependencies—everything runs offline on your machine.
+
+Analyze your LinkedIn profile, resume, and career goals through an intuitive web interface. Get actionable insights powered by local language models running through Ollama.
+
+### Why Local AI?
+
+✅ **Privacy First** - Your data never leaves your machine
+✅ **Zero Cost** - No API subscriptions or paid services
+✅ **Offline Ready** - Works completely disconnected from the internet
+✅ **Full Control** - Deploy and customize for your needs
+✅ **Enterprise Safe** - No data sharing with third parties
+
+---
+
+## ✨ Features
+
+### Current (v0.1.0)
+- 🔧 Docker-based local development environment
+- 🤖 Ollama integration with local LLM support
+- 📊 LinkedIn Profile Analyzer prototype
+- 🔄 n8n workflow automation engine
+- 📝 JSON parsing and structured data extraction
+
+### Planned (v0.2.0 - v1.0.0)
+- 📋 Resume Analyzer & Scoring
+- 🎯 ATS Compatibility Checker
+- 📊 Job Description Matching Engine
+- 🧠 Career Intelligence Dashboard
+- 🗺️ Learning Roadmaps & Certification Recommendations
+- 📁 GitHub Portfolio Analyzer
+- 📄 Professional Reports (Markdown, HTML, PDF, JSON)
+- 🔐 User Authentication & Profiles
+- ⚡ Performance Optimization
+- 🏢 Enterprise Features (RAG, Multi-Agent, Vector Search)
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────┐
+│   Next.js Frontend (React + TypeScript) │
+│   Beautiful Dashboard & Reports         │
+└────────────────┬────────────────────────┘
+                 │ HTTP/REST API
+                 ▼
+┌─────────────────────────────────────────┐
+│   n8n Automation Engine                 │
+│   Workflow Orchestration & Logic        │
+└────────────────┬────────────────────────┘
+                 │ LLM Requests
+                 ▼
+┌─────────────────────────────────────────┐
+│   Ollama Local LLM Server               │
+│   (Offline AI Processing)               │
+└─────────────────────────────────────────┘
+```
+
+For detailed architecture information, see [Architecture.md](./docs/Architecture.md).
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
 - Docker & Docker Compose
-- 8GB RAM (minimum), 16GB+ recommended
-- 20GB disk space for LLM models
+- 4GB RAM minimum (8GB recommended)
+- 10GB disk space for models
+- Git
 
 ### Installation
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/sahillad96/linkedin-professional-guru.git
 cd linkedin-professional-guru
 
-# Copy environment file
-cp docker/.env.example docker/.env
+# Copy environment template
+cp .env.example .env
 
-# Start services
-cd docker
+# Start all services
 docker-compose up -d
 
-# Wait for services (2-3 minutes)
-sleep 180
+# Wait for services to be ready (2-5 minutes)
+docker-compose logs -f
 
-# Access n8n
-open http://localhost:5678
+# Access the platform
+# Frontend: http://localhost:3000
+# n8n: http://localhost:5678
+# Ollama: http://localhost:11434
 ```
 
-For detailed setup, see [Installation Guide](docs/Installation.md).
+For detailed installation instructions, see [Installation.md](./docs/Installation.md).
 
-## Key Features
+### First Run
 
-### 🔧 Fully Local & Offline
-- All LLM inference runs on your machine
-- No data sent to external APIs
-- Works without internet connection
-- Complete data privacy
-
-### 🤖 AI-Powered Analysis
-- Llama 3.2 (3B) local language model
-- Custom prompt engineering for career analysis
-- Structured JSON output for integrations
-- Extensible prompt management system
-
-### 📊 Comprehensive Reports
-- Markdown formatting for documentation
-- JSON export for programmatic access
-- PDF generation (v0.6.0+)
-- Sample reports for reference
-
-### 🔄 Workflow Automation
-- Visual workflow builder (n8n)
-- Modular, reusable components
-- HTTP request handling
-- JSON parsing and transformation
-
-## Project Status
-
-### ✅ Completed (v0.1.0)
-- Docker containerization
-- n8n Community Edition setup
-- Ollama integration
-- HTTP request workflows
-- JSON parsing
-- LinkedIn profile analyzer prototype
-
-### 🚀 Roadmap
-
-| Version | Features | ETA |
-|---------|----------|-----|
-| **v0.2.0** | Dynamic input, prompt management, markdown reports | Q3 2026 |
-| **v0.3.0** | ATS analyzer, keyword matching, resume scoring | Q3 2026 |
-| **v0.4.0** | Resume analyzer, job matcher | Q4 2026 |
-| **v0.5.0** | Career & learning roadmaps, certifications | Q4 2026 |
-| **v0.6.0** | HTML & PDF exports | Q1 2027 |
-| **v1.0.0** | Production release | Q2 2027 |
-
-Full roadmap: [Roadmap.md](docs/Roadmap.md)
-
-## Repository Structure
-
-```
-linkedin-professional-guru/
-├── docker/              # Docker configuration & compose files
-├── docs/                # Complete documentation
-├── prompts/             # AI prompt templates (versioned)
-├── workflows/           # n8n workflow definitions (JSON)
-├── reports/             # Generated analysis reports
-├── samples/             # Test data & examples
-├── templates/           # Report templates
-├── assets/              # Images, icons, branding
-└── .github/             # GitHub templates & CI/CD
-```
-
-Detailed breakdown: [Architecture.md](docs/Architecture.md)
-
-## Usage
-
-### Run LinkedIn Profile Analysis
-
-1. Navigate to n8n: `http://localhost:5678`
-2. Open **LinkedIn Profile Analyzer** workflow
-3. Paste LinkedIn profile text in the input
-4. Execute workflow
-5. View generated report in `reports/markdown/`
-
-### Customize Prompts
-
-Edit prompts in `prompts/profile-analysis/`:
-- `system.md` – System-level instructions
-- `user.md` – User query template
-- `v1.md` – Current version
-
-See [Prompt Guide](docs/PromptGuide.md) for details.
-
-### Add New Workflows
-
-1. Create feature branch: `git checkout -b feature/new-analyzer`
-2. Design workflow in n8n UI
-3. Export as JSON to `workflows/`
-4. Document in [Workflow Guide](docs/WorkflowGuide.md)
-5. Submit pull request
-
-See [Contributing Guide](CONTRIBUTING.md).
-
-## Documentation
-
-| Document | Purpose |
-|----------|----------|
-| [Installation.md](docs/Installation.md) | Setup & deployment |
-| [Architecture.md](docs/Architecture.md) | System design & structure |
-| [WorkflowGuide.md](docs/WorkflowGuide.md) | n8n workflows explained |
-| [PromptGuide.md](docs/PromptGuide.md) | AI prompt engineering |
-| [API.md](docs/API.md) | REST API reference |
-| [DevelopmentPlan.md](docs/DevelopmentPlan.md) | Technical roadmap |
-| [Versioning.md](docs/Versioning.md) | Versioning strategy |
-| [Changelog.md](CHANGELOG.md) | Release notes |
-
-## Development
-
-### Local Development
-
-```bash
-# Start services
-cd docker
-docker-compose up -d
-
-# Monitor logs
-docker-compose logs -f n8n
-
-# Stop services
-docker-compose down
-```
-
-### Testing
-
-```bash
-# Run sample workflows
-cd workflows/profile-analysis
-# Use sample data from samples/ directory
-```
-
-See [Development Guide](docs/DevelopmentGuide.md).
-
-## Technology Stack
-
-- **Automation**: n8n (Community Edition)
-- **LLM**: Ollama + Llama 3.2 (3B)
-- **Containerization**: Docker & Docker Compose
-- **Workflows**: JSON (n8n format)
-- **Prompts**: Markdown
-- **Reports**: Markdown, JSON, PDF
-- **Version Control**: Git & GitHub
-
-## Security
-
-- All data processed locally
-- No API keys or credentials in code
-- `.env` files are `.gitignore`'d
-- See [Security Policy](SECURITY.md)
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Follow [Contributing Guide](CONTRIBUTING.md)
-4. Submit a pull request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-## Community & Support
-
-- **Issues**: [GitHub Issues](https://github.com/sahillad96/linkedin-professional-guru/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sahillad96/linkedin-professional-guru/discussions)
-- **Documentation**: [Full Docs](docs/)
-
-## Roadmap & Vision
-
-Our goal: **The most powerful, privacy-focused, open-source career intelligence platform.**
-
-Future directions:
-- Multi-agent architecture
-- Knowledge base & RAG
-- GitHub portfolio analysis
-- PostgreSQL integration
-- Mobile app
-- Self-hosted SaaS option
-
-See [Roadmap.md](docs/Roadmap.md).
-
-## License
-
-MIT License – see [LICENSE](LICENSE) for details.
-
-## Project Lead
-
-**Sahil Lad** – [@sahillad96](https://github.com/sahillad96)
+1. Open http://localhost:3000 in your browser
+2. Click "Analyze LinkedIn Profile"
+3. Paste your LinkedIn profile text
+4. Click "Analyze"
+5. View your personalized career intelligence report
 
 ---
 
-**Made with ❤️ for career growth & AI automation**
+## 📚 Documentation
+
+| Document | Purpose |
+|----------|----------|
+| [Installation.md](./docs/Installation.md) | Setup and deployment guide |
+| [Development.md](./docs/Development.md) | Development workflow and debugging |
+| [Architecture.md](./docs/Architecture.md) | System design and components |
+| [WorkflowGuide.md](./docs/WorkflowGuide.md) | n8n workflow documentation |
+| [PromptGuide.md](./docs/PromptGuide.md) | LLM prompt engineering |
+| [API.md](./docs/API.md) | API endpoints and usage |
+| [Roadmap.md](./docs/Roadmap.md) | Feature roadmap and milestones |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guidelines |
+
+---
+
+## 📁 Project Structure
+
+```
+linkedin-professional-guru/
+├── app/                          # Next.js app directory
+│   ├── page.tsx                 # Landing page
+│   ├── dashboard/               # Dashboard routes
+│   ├── api/                     # API routes
+│   └── layout.tsx               # Root layout
+├── components/                   # React components
+│   ├── landing/                 # Landing page components
+│   ├── dashboard/               # Dashboard components
+│   ├── common/                  # Shared components
+│   └── ui/                      # shadcn/ui components
+├── automation/                   # n8n workflows
+│   ├── workflows/               # Workflow definitions
+│   └── prompts/                 # LLM prompts
+├── docker/                       # Docker configuration
+│   ├── docker-compose.yml       # Compose configuration
+│   ├── nginx.conf               # Reverse proxy config
+│   └── Dockerfile               # Application Dockerfile
+├── docs/                         # Documentation
+├── public/                       # Static assets
+├── scripts/                      # Utility scripts
+└── .github/                      # GitHub configuration
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js 13+** - React framework with SSR
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS
+- **shadcn/ui** - Beautiful component library
+- **Recharts** - Data visualization
+
+### Backend
+- **n8n Community Edition** - Workflow automation
+- **Node.js** - Runtime
+
+### AI/ML
+- **Ollama** - Local LLM serving
+- **Mistral/Llama 2** - Language models
+
+### Infrastructure
+- **Docker** - Containerization
+- **Docker Compose** - Orchestration
+- **Nginx** - Reverse proxy
+
+---
+
+## 🎯 Use Cases
+
+### For Job Seekers
+- 📊 Analyze your LinkedIn profile strength
+- 📋 Optimize resume for ATS systems
+- 🎯 Match skills against job descriptions
+- 🗺️ Plan your career development
+
+### For Career Coaches
+- 📈 Generate client analysis reports
+- 🧠 Identify skill gaps
+- 📚 Recommend certifications
+- 💼 Track career progress
+
+### For Recruiters
+- 🔍 Screen candidates efficiently
+- 📊 Generate compatibility reports
+- 🎯 Match candidates to roles
+
+---
+
+## 📈 Roadmap
+
+See [Roadmap.md](./docs/Roadmap.md) for detailed feature roadmap.
+
+**v0.1.0** ✅ Complete
+- Docker setup
+- n8n & Ollama integration
+- Profile analyzer prototype
+
+**v0.2.0** 🔄 In Progress
+- Dynamic profile input
+- Prompt management system
+- Markdown reports
+
+**v0.3.0** 📋 Planned
+- Resume & ATS analyzers
+- Keyword matching engine
+
+**v1.0.0** 🚀 Target
+- Full feature set
+- Production deployment
+- Public release
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+### Quick Contribution Guide
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙋 Support
+
+### Getting Help
+- 📖 Read the [Documentation](./docs/)
+- 🐛 Check [Existing Issues](https://github.com/sahillad96/linkedin-professional-guru/issues)
+- 💬 Open a [GitHub Discussion](https://github.com/sahillad96/linkedin-professional-guru/discussions)
+- 📧 Email: support@linkedin-guru.local
+
+---
+
+## 🎓 Learning Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [n8n Documentation](https://docs.n8n.io)
+- [Ollama Documentation](https://github.com/ollama/ollama)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+
+---
+
+## 📊 Project Stats
+
+![GitHub Stars](https://img.shields.io/github/stars/sahillad96/linkedin-professional-guru?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/sahillad96/linkedin-professional-guru?style=social)
+![GitHub Issues](https://img.shields.io/github/issues/sahillad96/linkedin-professional-guru)
+
+---
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org)
+- Styled with [Tailwind CSS](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com)
+- Automated with [n8n](https://n8n.io)
+- Powered by [Ollama](https://ollama.ai)
+
+---
+
+<div align="center">
+
+**[⬆ Back to top](#linkedin-professional-guru)**
+
+Made with ❤️ for career professionals worldwide
+
+</div>

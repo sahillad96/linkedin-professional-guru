@@ -1,228 +1,139 @@
 # Contributing to LinkedIn Professional Guru
 
-Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to the project.
+First off, thank you for considering contributing to LinkedIn Professional Guru! It's people like you that make LinkedIn Professional Guru such a great tool.
 
 ## Code of Conduct
 
-This project is committed to providing a welcoming and inspiring community for all. Please read and follow our community standards of respect and professionalism.
+This project and everyone participating in it is governed by our Code of Conduct. By participating, you are expected to uphold this code.
 
-## How to Contribute
+## How Can I Contribute?
 
-### 1. Report Issues
+### Reporting Bugs
 
-If you encounter bugs or have feature requests, please [create an issue](https://github.com/sahillad96/linkedin-professional-guru/issues).
+Before creating bug reports, please check the [issue list](https://github.com/sahillad96/linkedin-professional-guru/issues) as you might find out that you don't need to create one. When you are creating a bug report, please include as many details as possible:
 
-**Before creating an issue:**
-- Check existing issues to avoid duplicates
-- Provide clear title and description
-- Include relevant details (OS, Docker version, error messages)
-- Use the appropriate issue template
+* **Use a clear and descriptive title**
+* **Describe the exact steps which reproduce the problem**
+* **Provide specific examples to demonstrate the steps**
+* **Describe the behavior you observed after following the steps**
+* **Explain which behavior you expected to see instead and why**
+* **Include screenshots and animated GIFs if possible**
+* **Include your environment details** (OS, Docker version, etc.)
 
-### 2. Contribute Code
+### Suggesting Enhancements
 
-#### Getting Started
+Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion, please include:
 
-```bash
-# Clone your fork
-git clone https://github.com/YOUR-USERNAME/linkedin-professional-guru.git
-cd linkedin-professional-guru
+* **Use a clear and descriptive title**
+* **Provide a step-by-step description of the suggested enhancement**
+* **Provide specific examples to demonstrate the steps**
+* **Describe the current behavior and expected behavior**
+* **Explain why this enhancement would be useful**
 
-# Add upstream remote
-git remote add upstream https://github.com/sahillad96/linkedin-professional-guru.git
+### Pull Requests
 
-# Create feature branch
-git checkout -b feature/your-feature-name
-```
-
-#### Development Workflow
-
-1. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   # or
-   git checkout -b fix/bug-description
-   ```
-
-2. **Make your changes**
-   - Follow existing code style and patterns
-   - Write clear commit messages
-   - Update documentation as needed
-   - Keep commits atomic and focused
-
-3. **Test your changes**
-   ```bash
-   cd docker
-   docker-compose down
-   docker-compose up -d
-   # Test your workflow/changes
-   ```
-
-4. **Commit and push**
-   ```bash
-   git add .
-   git commit -m "feat: add amazing feature"
-   git push origin feature/amazing-feature
-   ```
-
-5. **Submit a Pull Request**
-   - Use the PR template
-   - Link related issues
-   - Provide clear description
-   - Be responsive to feedback
-
-### 3. Improve Documentation
-
-Documentation improvements are always welcome!
-
-- Fix typos and clarify explanations
-- Add examples and use cases
-- Improve formatting and structure
-- Translate to other languages (future)
-
-### 4. Create Workflows
-
-Contribute new n8n workflows:
-
-1. Design workflow in n8n UI
-2. Export as JSON
-3. Save to appropriate `workflows/` subdirectory
-4. Create documentation in [WorkflowGuide.md](docs/WorkflowGuide.md)
-5. Add sample data to `samples/`
-6. Submit pull request with explanation
-
-### 5. Contribute Prompts
-
-Enhance AI prompts for better analysis:
-
-1. Create or modify prompt in `prompts/`
-2. Follow versioning: `v1.md`, `v2.md`, etc.
-3. Document changes in `CHANGELOG.md`
-4. Test with sample data
-5. Submit PR with test results
-
-## Contribution Guidelines
-
-### Code Style
-
-- **JSON**: Use proper indentation (2 spaces)
-- **Markdown**: Use consistent heading levels
-- **Commit Messages**: Use conventional commits
-  ```
-  feat: add new feature
-  fix: resolve issue
-  docs: update documentation
-  refactor: improve code structure
-  ```
-
-### Documentation
-
-- Keep documentation up-to-date
-- Use clear, concise language
-- Include examples where helpful
-- Update table of contents if needed
-- Add links to related documentation
-
-### Workflow Contributions
-
-- Test thoroughly before submitting
-- Include sample input data
-- Document expected outputs
-- Add comments for complex logic
-- Follow naming conventions
-
-### Prompt Contributions
-
-- Test with various inputs
-- Document the purpose and use case
-- Include expected output examples
-- Version appropriately
-- Reference related prompts
-
-## Pull Request Process
-
-1. **Ensure your PR:**
-   - Has a descriptive title and clear description
-   - References related issues (`Fixes #123`)
-   - Follows the PR template
-   - Has meaningful commit messages
-
-2. **Address feedback:**
-   - Respond to reviewer comments
-   - Make requested changes
-   - Update PR description if needed
-   - Push updates to the same branch
-
-3. **Merge criteria:**
-   - All CI checks pass
-   - At least one approval
-   - No conflicting changes
-   - Documentation is updated
+* Fill in the required template
+* Follow the TypeScript and CSS styleguides
+* Include appropriate test cases
+* End all files with a newline
+* Avoid platform-dependent code
 
 ## Development Setup
 
-### Prerequisites
-- Docker & Docker Compose
-- Git
-- Text editor (VS Code recommended)
-- 8GB+ RAM
+1. Fork the repository
+2. Clone your fork locally
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/linkedin-professional-guru.git
+   cd linkedin-professional-guru
+   ```
+3. Create a virtual environment and install dependencies
+   ```bash
+   cp .env.example .env
+   docker-compose up -d
+   ```
+4. Create a branch for your changes
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-### Local Environment
+## Development Workflow
 
-```bash
-# Start services
-cd docker
-docker-compose up -d
+1. Make your changes in a dedicated branch
+2. Test your changes thoroughly
+3. Write clear, descriptive commit messages
+4. Push to your fork
+5. Open a pull request with a clear title and description
 
-# Monitor services
-docker-compose ps
-docker-compose logs -f n8n
+## Style Guides
 
-# Access services
-# n8n: http://localhost:5678
-# Ollama API: http://localhost:11434
+### Git Commit Messages
+
+* Use the present tense ("Add feature" not "Added feature")
+* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+* Limit the first line to 72 characters or less
+* Reference issues and pull requests liberally after the first line
+
+Example:
+```
+Add LinkedIn profile analyzer component
+
+Implements the core profile analysis functionality with JSON parsing.
+Closes #123
 ```
 
-### Testing Workflows
+### TypeScript Code Style
 
-1. Navigate to n8n UI
-2. Import workflow from `workflows/`
-3. Use sample data from `samples/`
-4. Execute and verify output
-5. Document results
+* Use TypeScript for all new code
+* Use `const` by default, `let` when needed, avoid `var`
+* Use arrow functions when appropriate
+* Write meaningful variable and function names
+* Add JSDoc comments for complex functions
+* Keep functions small and focused
 
-## Areas for Contribution
+Example:
+```typescript
+/**
+ * Analyzes a LinkedIn profile and returns insights
+ * @param profile - The LinkedIn profile text
+ * @returns Structured analysis data
+ */
+export async function analyzeLinkedInProfile(
+  profile: string
+): Promise<ProfileAnalysis> {
+  // Implementation
+}
+```
 
-### High Priority
-- [ ] Documentation improvements
-- [ ] Bug fixes
-- [ ] Performance optimization
-- [ ] Test coverage
+### CSS/Tailwind Style Guide
 
-### Medium Priority
-- [ ] New workflows
-- [ ] Prompt enhancements
-- [ ] UI improvements
-- [ ] Example projects
+* Use Tailwind CSS utility classes
+* Avoid writing custom CSS unless absolutely necessary
+* Use a consistent naming convention for custom classes
+* Mobile-first responsive design approach
 
-### Future Opportunities
-- [ ] Multi-language support
-- [ ] Additional LLM models
-- [ ] Database integration
-- [ ] Mobile app
-- [ ] Cloud deployment options
+## Testing
+
+* Write tests for new features
+* Ensure existing tests still pass
+* Aim for high code coverage
+* Test edge cases and error scenarios
+
+## Documentation
+
+* Update README.md if you change functionality
+* Add comments to complex code sections
+* Update relevant documentation files in `/docs`
+* Add examples for new features
 
 ## Questions?
 
-- Check [Documentation](docs/)
-- Open a [Discussion](https://github.com/sahillad96/linkedin-professional-guru/discussions)
-- Review existing [Issues](https://github.com/sahillad96/linkedin-professional-guru/issues)
+Feel free to open an issue with the `question` label or start a discussion.
 
 ## Recognition
 
-Contributors are recognized in:
-- Project README
-- CHANGELOG.md
-- GitHub contributors page
-- Release notes
+Contributors will be recognized in:
+* The README.md file
+* Release notes
+* GitHub contributors page
 
-Thank you for making this project better! 🚀
+Thank you for your interest in contributing to LinkedIn Professional Guru!

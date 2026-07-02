@@ -1,98 +1,74 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# C extensions
-*.so
+# Testing
+coverage/
+.nyc_output/
 
-# Distribution / packaging
-.Python
+# Production
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-PIPFILE.lock
+.next/
+out/
 
-# Virtual environments
-venv/
-ENV/
-env/
-.venv
+# Misc
+.DS_Store
+*.log
+*.logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-# IDE
+# Editor directories and files
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 *.swp
-*.swo
-*~
-.DS_Store
+.vim/
 
 # Environment variables
 .env
 .env.local
 .env.*.local
+.env.production.local
+.env.test.local
 
-# Logs
-logs/
-*.log
-npm-debug.log*
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
 
 # Docker
-.docker/
-.dockerignore
-docker-compose.override.yml
+volumes/
+data/
+*.sock
 
-# Generated files
-reports/*.pdf
-reports/*.json
-reports/*.csv
-screenshots/*.png
-screenshots/*.jpg
+# n8n
+.n8n/
+n8n_data/
 
-# Temporary files
+# Ollama
+ollama_data/
+.ollama/
+
+# IDE
+*.code-workspace
+.vscode/settings.json
+.vscode/launch.json
+
+# Temp
 *.tmp
-*.bak
-.DS_Store
-
-# Project specific
-.workflows_temp/
-.models_cache/
+*.temp
 .cache/
-temp/
-tmp/
 
-# Sensitive data
-*.key
-*.pem
-*.crt
-secrets.env
-# Environment files
-.env
-.env.*
-
-# Local runtime artifacts
-*.log
-*.tmp
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Docker local state
-docker/data/
-
-# Reports generated locally
-reports/*.json
-reports/*.md
+# Build outputs
+*.tsbuildinfo
