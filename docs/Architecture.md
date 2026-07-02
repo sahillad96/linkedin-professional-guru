@@ -1,451 +1,226 @@
-# System Architecture
+# Architecture Guide
 
-## Overview
+## System Overview
 
-LinkedIn Professional Guru is a modular, scalable architecture built on containerized microservices for local AI inference and workflow automation.
-
-## Architecture Diagram
+LinkedIn Professional Guru is a containerized application with three main components:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    User Interface (Web)                      │
-│                    http://localhost:5678                     │
-└──────────────────────┬──────────────────────────────────────┘
-                       │
-┌──────────────────────▼──────────────────────────────────────┐
-│                  n8n Workflow Engine                         │
-│  - Visual Workflow Designer                                 │
-│  - HTTP Request Handler                                     │
-│  - JSON Parser & Transformer                                │
-│  - Execution Scheduler                                      │
-│  - Data Storage & History                                   │
-└────────────────────┬─────────────────────┬──────────────────┘
-                     │                     │
-        ┌────────────▼────────┐   ┌────────▼──────────┐
-        │  Local File System  │   │  Ollama LLM API   │
-        │                    │   │  (Port 11434)     │
-        │  - Workflows (JSON)│   │                   │
-        │  - Prompts (MD)    │   │  - Llama 3.2 (3B) │
-        │  - Reports (MD/JSON)│   │  - HTTP Endpoint │
-        │  - Samples (TXT)   │   │  - Local Models   │
-        └────────────────────┘   └──────────────────┘
-                     │                     │
-        ┌────────────▼─────────────────────▼─────┐
-        │      Docker Container Network          │
-        │  (Internal communication between        │
-        │   n8n and Ollama services)              │
-        └──────────────────────────────────────┘
+│                  Web Browser (User)                          │
+└────────────────────────┬────────────────────────────────────┘
+                         │ HTTP/HTTPS
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  Nginx Reverse Proxy                         │
+│                 (Port 80/443)                                │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+        ▼                ▼                ▼
+   ┌────────────┐  ┌─────────┐     ┌──────────┐
+   │ Next.js    │  │  n8n    │     │  Ollama  │
+   │ Frontend   │  │ Engine  │     │   LLM    │
+   │ (Port 3000)│  │(Port   │     │(Port    │
+   │            │  │ 5678)  │     │ 11434)  │
+   └────────────┘  └─────────┘     └──────────┘
 ```
 
-## Technology Stack
+## Components
 
-### Core Services
+### 1. Frontend (Next.js)
 
-| Component | Technology | Purpose | Version |
-|-----------|-----------|---------|----------|
-| **Automation** | n8n CE | Workflow orchestration | Latest |
-| **LLM** | Ollama | Local inference | Latest |
-| **Model** | Llama 3.2 | Language model | 3B params |
-| **Container** | Docker | Containerization | 20.10+ |
-| **Orchestration** | Docker Compose | Service management | 1.29+ |
+**Technology**: Next.js + React + TypeScript  
+**Port**: 3000  
+**Purpose**: User-facing web interface
 
-### Data Formats
+**Features**:
+- Landing page
+- Dashboard
+- Profile analyzer UI
+- Report generation and display
+- Responsive design with Tailwind CSS
 
-| Format | Use Case | Location |
-|--------|----------|----------|
-| **JSON** | Workflows, structured data | `workflows/`, `reports/` |
-| **Markdown** | Prompts, documentation, reports | `prompts/`, `docs/`, `reports/` |
-| **Plain Text** | Sample data, input | `samples/` |
-
-## Repository Structure
-
-### Root Directory
-
+**File Structure**:
 ```
-linkedin-professional-guru/
-├── .github/              # GitHub configuration
-│   ├── ISSUE_TEMPLATE/   # Issue templates
-│   ├── workflows/        # GitHub Actions (future)
-│   └── pull_request_template.md
-│
-├── docker/               # Docker configuration
-│   ├── compose.yaml      # Docker Compose definition
-│   ├── .env.example      # Environment template
-│   └── README.md         # Docker setup guide
-│
-├── docs/                 # Project documentation
-│   ├── Architecture.md   # This file
-│   ├── Installation.md   # Setup guide
-│   ├── WorkflowGuide.md  # Workflow documentation
-│   ├── PromptGuide.md    # Prompt engineering
-│   ├── API.md            # API reference
-│   ├── Roadmap.md        # Development roadmap
-│   ├── Versioning.md     # Versioning strategy
-│   ├── DevelopmentGuide.md # Dev setup
-│   └── Changelog.md      # Release notes (root)
-│
-├── prompts/              # AI prompt templates
-│   ├── profile-analysis/
-│   │   ├── system.md     # System prompt
-│   │   ├── user.md       # User prompt template
-│   │   └── v1.md         # Version 1
-│   ├── ats-analysis/
-│   │   └── v1.md
-│   ├── career-roadmap/
-│   │   └── v1.md
-│   └── learning-roadmap/
-│       └── v1.md
-│
-├── workflows/            # n8n workflow definitions
-│   ├── profile-analysis/
-│   │   ├── linkedin-profile-analyzer.json
-│   │   ├── prompt-builder.json
-│   │   └── parse-response.json
-│   ├── ats-analysis/
-│   │   ├── ats-analyzer.json
-│   │   └── keyword-analysis.json
-│   ├── career/
-│   │   ├── career-roadmap.json
-│   │   └── learning-roadmap.json
-│   ├── reports/
-│   │   ├── markdown-generator.json
-│   │   ├── html-generator.json
-│   │   └── pdf-generator.json
-│   ├── shared/
-│   │   ├── ollama-http.json
-│   │   ├── parse-json.json
-│   │   ├── markdown-builder.json
-│   │   └── save-report.json
-│   └── archive/          # Deprecated workflows
-│
-├── reports/              # Generated reports
-│   ├── markdown/         # .md reports
-│   ├── json/             # .json reports
-│   ├── pdf/              # .pdf reports (v0.6.0+)
-│   └── sample-reports/   # Example outputs
-│
-├── samples/              # Test data & examples
-│   ├── linkedin-profile.txt
-│   ├── resume.txt
-│   ├── job-description.txt
-│   └── expected-output.json
-│
-├── templates/            # Report templates
-│   ├── markdown/
-│   ├── html/
-│   └── pdf/
-│
-├── assets/               # Project assets
-│   ├── images/
-│   ├── icons/
-│   └── logo/
-│
-├── screenshots/          # UI/workflow screenshots
-│   ├── workflows/
-│   ├── reports/
-│   └── ui/
-│
-├── .gitignore            # Git ignore rules
-├── LICENSE               # MIT License
-├── README.md             # Main documentation
-├── CHANGELOG.md          # Release history
-├── CONTRIBUTING.md       # Contributing guide
-└── SECURITY.md           # Security policy
+app/
+├── page.tsx              # Landing page
+├── dashboard/
+│   ├── page.tsx          # Dashboard
+│   └── analyze/          # Analysis routes
+└── api/                  # Backend endpoints
+
+components/
+├── landing/              # Landing page components
+├── dashboard/            # Dashboard components
+└── ui/                   # Shared UI components
+```
+
+### 2. Automation Engine (n8n)
+
+**Technology**: n8n Community Edition  
+**Port**: 5678  
+**Purpose**: Workflow orchestration and automation
+
+**Workflows**:
+- Profile analysis workflow
+- Report generation workflow
+- Data parsing and transformation
+- LLM request handling
+
+**Key Features**:
+- Visual workflow builder
+- HTTP node for API communication
+- JSON parsing nodes
+- Code execution capabilities
+- Local execution (no cloud)
+
+### 3. AI/ML Engine (Ollama)
+
+**Technology**: Ollama + Local Language Models  
+**Port**: 11434  
+**Purpose**: Local LLM inference
+
+**Supported Models**:
+- Mistral 7B (default)
+- Llama 2 7B
+- Neural Chat
+- Other GGUF format models
+
+**Configuration**:
+```env
+OLLAMA_BASE_URL=http://ollama:11434
+OLLAMA_MODEL=mistral
+OLLAMA_TEMPERATURE=0.7
 ```
 
 ## Data Flow
 
-### Profile Analysis Workflow
+### Profile Analysis Flow
 
 ```
-1. INPUT
-   └─> LinkedIn Profile Text
-       (from samples/ or user input)
-
-2. PROMPT BUILDER
-   └─> system.md + user.md + input
-       = Complete prompt
-
-3. OLLAMA HTTP REQUEST
-   └─> POST to http://ollama:11434/api/generate
-       └─> Llama 3.2 processes prompt
-           └─> JSON response with analysis
-
-4. JSON PARSER
-   └─> Parse LLM response
-       └─> Extract structured data
-
-5. MARKDOWN GENERATOR
-   └─> Format analysis as Markdown
-       └─> Add headers, sections, formatting
-
-6. REPORT SAVER
-   └─> Save to reports/markdown/
-       └─> reports/json/ (if needed)
-
-7. OUTPUT
-   └─> Professional career analysis report
+1. User inputs LinkedIn profile text
+   ↓
+2. Frontend sends to API route (/api/analyze)
+   ↓
+3. API triggers n8n workflow
+   ↓
+4. n8n prepares prompt with profile text
+   ↓
+5. n8n sends request to Ollama
+   ↓
+6. Ollama processes with local LLM
+   ↓
+7. n8n parses and formats response
+   ↓
+8. API returns structured JSON
+   ↓
+9. Frontend displays analysis report
 ```
 
-### Workflow Execution Flow
-
-```
-n8n Workflow Execution
-│
-├─ Receive Input
-│  └─ HTTP POST / Manual trigger
-│
-├─ Process Nodes (Sequential/Parallel)
-│  ├─ Node 1: Transform data
-│  ├─ Node 2: Call Ollama API
-│  ├─ Node 3: Parse response
-│  ├─ Node 4: Generate report
-│  └─ Node 5: Save file
-│
-├─ Error Handling
-│  ├─ Retry on failure
-│  ├─ Fallback responses
-│  └─ Error logging
-│
-├─ Store Execution History
-│  └─ Workflow runs recorded
-│
-└─ Return Result
-   └─ Output to user/system
-```
-
-## Service Communication
-
-### n8n ↔ Ollama HTTP Request
-
-```json
-{
-  "method": "POST",
-  "url": "http://ollama:11434/api/generate",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": {
-    "model": "llama3.2:3b",
-    "prompt": "Analyze this LinkedIn profile...",
-    "stream": false,
-    "temperature": 0.7
-  }
-}
-```
-
-### Response Parsing
-
-```json
-{
-  "model": "llama3.2:3b",
-  "created_at": "2024-01-15T10:30:00Z",
-  "response": "{ 'analysis': { 'skills': [...], 'experience': ... } }",
-  "done": true,
-  "eval_count": 256,
-  "eval_duration": 2000000000
-}
-```
-
-## Storage Architecture
-
-### Docker Volumes
+## Docker Compose Structure
 
 ```yaml
-Volumes:
-  n8n_storage:
-    - Size: Variable (depends on workflow executions)
-    - Contains: n8n configurations, workflow definitions, execution history
-    - Mounted at: /home/node/.n8n
-    - Persisted: Yes (survives container restart)
+services:
+  frontend:          # Next.js application
+  n8n:              # Workflow engine
+  ollama:           # LLM inference server
+  nginx:            # Reverse proxy
 
-  ollama_storage:
-    - Size: ~2GB per model (3B model)
-    - Contains: LLM model files, model cache
-    - Mounted at: /root/.ollama
-    - Persisted: Yes
-```
+networks:
+  internal:         # Internal service communication
 
-### Local File System
-
-```
-linkedin-professional-guru/
-├── reports/             # Generated reports (gitignored)
-│   ├── markdown/        # .md files
-│   ├── json/            # .json files
-│   └── pdf/             # .pdf files (future)
-│
-├── logs/                # Application logs (gitignored)
-│   ├── n8n.log
-│   └── ollama.log
-│
-├── .models_cache/       # Model cache (gitignored)
-│   └── Downloaded models
-│
-└── temp/                # Temporary files (gitignored)
-```
-
-## Scalability Considerations
-
-### Current (v0.1.0)
-- **Single machine deployment**
-- **Sequential workflow execution**
-- **No horizontal scaling**
-- **Local storage only**
-
-### Future (v0.8.0+)
-- **Multi-agent architecture**
-- **Parallel workflow execution**
-- **Distributed processing**
-- **Database backend (PostgreSQL)**
-- **Queue-based architecture** (Bull, RabbitMQ)
-
-## Performance Characteristics
-
-### Inference Time
-- **Profile Analysis**: 30-60 seconds
-- **Depends on**: Text length, prompt complexity, hardware
-- **Model**: Llama 3.2 (3B)
-- **Hardware**: CPU-based (GPU support future)
-
-### Memory Usage
-- **Ollama**: ~4GB (3B model loaded)
-- **n8n**: ~500MB-1GB
-- **Total**: ~6GB minimum
-- **Recommended**: 16GB+ for comfortable operation
-
-### Disk Usage
-- **Base images**: ~2GB
-- **Models**: ~2GB per model
-- **Reports**: ~100KB per analysis
-- **Total**: ~20GB starting, grows with reports
-
-## Network Architecture
-
-### Docker Network
-
-```
-Internal (bridge network)
-├─ n8n (port 5678)
-├─ Ollama (port 11434)
-└─ Communication: Internal hostname resolution
-```
-
-### Port Mapping
-
-| Service | Internal | External | Access |
-|---------|----------|----------|--------|
-| **n8n** | 5678 | 127.0.0.1:5678 | Localhost only |
-| **Ollama** | 11434 | 127.0.0.1:11434 | Localhost only |
-
-### Firewall Rules (Recommended)
-
-```bash
-# Block external access
-# Only allow localhost
-iptables -A INPUT -p tcp --dport 5678 -s 127.0.0.1 -j ACCEPT
-iptables -A INPUT -p tcp --dport 5678 -j DROP
+volumes:
+  n8n_data:        # n8n workflow storage
+  ollama_data:     # Model cache
 ```
 
 ## Security Architecture
 
-### Data Flow Security
+### Network Isolation
+
+- Services communicate only over Docker network
+- No service is directly exposed except through Nginx
+- All communication is internal to the machine
+
+### Data Privacy
+
+- All processing happens locally
+- No data leaves the container environment
+- No external API calls
+- User data is not persisted unless explicitly exported
+
+### Access Control
+
+- Frontend accessible via Nginx proxy
+- n8n editor accessible (for configuration)
+- Ollama only accessible from n8n
+
+## Performance Considerations
+
+### Resource Allocation
 
 ```
-User Input
-    ↓
-✅ Validated locally
-    ↓
-n8n Processing
-    ↓
-✅ No external API calls
-    ↓
-Ollama Local Inference
-    ↓
-✅ No data sent to cloud
-    ↓
-Local Report Storage
-    ↓
-✅ Data remains on device
+Container      | Recommended | Minimum
+─────────────────────────────────────
+Frontend       | 512MB       | 256MB
+n8n            | 1GB         | 512MB
+Ollama         | 4GB         | 2GB
+Nginx          | 128MB       | 64MB
+─────────────────────────────────────
+Total          | 5.6GB       | 2.8GB
 ```
 
-### Container Isolation
+### Optimization Tips
 
-- Services run in isolated containers
-- No shared filesystem (except docker socket)
-- Internal network communication
-- Resource limits enforced
+1. Use SSD storage for Docker volumes
+2. Allocate sufficient RAM to Docker
+3. Use smaller models (7B) for faster inference
+4. Enable Docker's resource limits
 
-## Extension Points
+## Scaling Considerations
 
-### Adding New Analyzers
+### Horizontal Scaling
 
-1. **Create workflow**: `workflows/new-feature/`
-2. **Add prompts**: `prompts/new-feature/`
-3. **Sample data**: `samples/new-feature/`
-4. **Documentation**: `docs/`
+Future versions may support:
+- Multiple Ollama instances
+- Load balancing
+- Queue-based architecture
+- Distributed processing
 
-### Custom LLM Models
+### Vertical Scaling
 
-```bash
-# Pull alternative model
-docker exec ollama ollama pull mistral:latest
+- Upgrade container resources
+- Use larger language models
+- Increase cache sizes
 
-# Update prompts for new model
-# Edit docker/.env
-OLLAMA_MODEL=mistral:latest
-```
+## Integration Points
 
-### Integration Points
-
-- HTTP webhooks (n8n)
-- REST API (Ollama)
-- Local file system (reports)
-- GitHub Actions (future CI/CD)
-- Database connections (future)
-
-## Related Documentation
-
-- [Installation Guide](Installation.md) – Setup & deployment
-- [Workflow Guide](WorkflowGuide.md) – n8n workflows explained
-- [Prompt Guide](PromptGuide.md) – AI prompt engineering
-- [API Reference](API.md) – REST endpoints
-- [Development Guide](DevelopmentGuide.md) – Developer setup
-
-## Future Architecture (v1.0.0+)
+### Frontend → Backend
 
 ```
-┌─────────────────────────────────────────┐
-│         User Interface Layer             │
-│  (Web UI, API, Mobile app)              │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      Orchestration & Gateway Layer       │
-│  (API Gateway, Auth, Load Balancing)    │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────────────────┐
-│          Multi-Agent Orchestration                  │
-│  - Profile Analyzer Agent                          │
-│  - Resume Analyzer Agent                           │
-│  - ATS Analyzer Agent                              │
-│  - Career Roadmap Agent                            │
-│  - Learning Recommendations Agent                  │
-└──────────────────┬──────────────────────────────────┘
-                   │
-┌──────────────────▼──────────────────────────────────┐
-│     Processing & Inference Layer                    │
-│  - n8n Workflows                                   │
-│  - Ollama (multi-model)                            │
-│  - Vector Database (RAG)                           │
-│  - Cache Layer                                     │
-└──────────────────┬──────────────────────────────────┘
-                   │
-┌──────────────────▼──────────────────────────────────┐
-│       Data & Storage Layer                          │
-│  - PostgreSQL Database                             │
-│  - File Storage                                    │
-│  - Knowledge Base                                  │
-└──────────────────────────────────────────────────────┘
+POST /api/analyze
+{
+  "profile": "LinkedIn profile text..."
+}
 ```
+
+### Backend → LLM
+
+```
+POST http://ollama:11434/api/generate
+{
+  "model": "mistral",
+  "prompt": "Analyze this profile...",
+  "stream": false
+}
+```
+
+## Future Architecture
+
+Planned enhancements:
+- Database layer (PostgreSQL/SQLite)
+- Vector search (Qdrant)
+- Multi-agent system
+- Caching layer (Redis)
+- Message queue (RabbitMQ)

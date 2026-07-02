@@ -23,7 +23,7 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# Editor directories and files
+# Editor
 .vscode/
 .idea/
 *.suo
@@ -32,18 +32,15 @@ lerna-debug.log*
 *.sln
 *.sw?
 *.swp
-.vim/
 
-# Environment variables
+# Environment
 .env
 .env.local
 .env.*.local
 .env.production.local
-.env.test.local
 
 # OS
 Thumbs.db
-.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -52,23 +49,5 @@ volumes/
 data/
 *.sock
 
-# n8n
-.n8n/
-n8n_data/
-
-# Ollama
-ollama_data/
-.ollama/
-
-# IDE
-*.code-workspace
-.vscode/settings.json
-.vscode/launch.json
-
-# Temp
-*.tmp
-*.temp
-.cache/
-
-# Build outputs
+# Build
 *.tsbuildinfo
