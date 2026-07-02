@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PIPFILE.lock
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Docker
+.docker/
+.dockerignore
+docker-compose.override.yml
+
+# Generated files
+reports/*.pdf
+reports/*.json
+reports/*.csv
+screenshots/*.png
+screenshots/*.jpg
+
+# Temporary files
+*.tmp
+*.bak
+.DS_Store
+
+# Project specific
+.workflows_temp/
+.models_cache/
+.cache/
+temp/
+tmp/
+
+# Sensitive data
+*.key
+*.pem
+*.crt
+secrets.env
