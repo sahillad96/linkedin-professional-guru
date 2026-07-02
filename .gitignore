@@ -78,3 +78,21 @@ tmp/
 *.pem
 *.crt
 secrets.env
+# Environment files
+.env
+.env.*
+
+# Local runtime artifacts
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker local state
+docker/data/
+
+# Reports generated locally
+reports/*.json
+reports/*.md

@@ -112,3 +112,70 @@ Want to contribute? Check out:
 ---
 
 **Previous**: [Installation.md](Installation.md) | **Next**: [Changelog.md](Changelog.md)
+## Feature Roadmap
+
+### Phase 1 — Foundation
+- Establish repository structure and documentation
+- Create initial workflow templates for profile analysis
+- Define local prompt architecture
+- Prepare Docker-based setup assets
+
+### Phase 2 — Version 1.0
+- Build a working n8n workflow for profile intake
+- Generate ATS analysis and career recommendations
+- Create basic report rendering in markdown
+- Validate workflow execution with local LLMs
+
+### Phase 3 — Version 2.0
+- Introduce richer prompt pipelines and role-specific evaluation
+- Add structured learning roadmap generation
+- Improve report formatting and export options
+- Add support for more profile input formats
+
+### Phase 4 — Future Expansion
+- Add dashboarding and historical trend analysis
+- Support multi-user collaboration and shared evaluations
+- Expand into job market intelligence and recruiter-facing insights
+
+## Version Roadmap
+
+| Version | Focus | Status |
+| --- | --- | --- |
+| v0.1.0 | Repository scaffolding and documentation | Completed |
+| v1.0.0 | Core workflow automation and feature delivery | Planned |
+| v2.0.0 | Advanced prompts and reporting | Planned |
+| v3.0.0 | Expanded analytics and collaboration | Planned |
+
+## GitHub Issues for Version 1.0
+
+- [ ] Create a stable n8n workflow for profile parsing
+- [ ] Build an ATS analysis prompt for resume and profile evaluation
+- [ ] Implement a skills gap analysis prompt
+- [ ] Generate markdown-based career recommendations
+- [ ] Document local installation and environment requirements
+- [ ] Add a sample report artifact for validation
+
+## Milestones
+
+- Milestone 1: Repository foundation complete
+- Milestone 2: Local workflow execution validated
+- Milestone 3: Version 1.0 feature set delivered
+- Milestone 4: Community feedback incorporated for v2.0
+
+## Release Notes Template
+
+### Version X.Y.Z
+
+**Release Date:** YYYY-MM-DD
+
+**Highlights**
+- Feature A
+- Feature B
+- Bug fixes and improvements
+
+**Known Issues**
+- Issue 1
+- Issue 2
+
+**Upgrade Notes**
+- Any migration steps or configuration changes

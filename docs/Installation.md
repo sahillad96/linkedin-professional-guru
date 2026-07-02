@@ -201,3 +201,65 @@ kill -9 <PID>
 ---
 
 **Previous**: [README.md](../README.md) | **Next**: [Architecture.md](Architecture.md)
+# Installation Guide
+
+## Prerequisites
+
+Before starting, ensure that the following tools are available:
+
+- Git
+- Docker and Docker Compose
+- A local machine or server with sufficient RAM for running Ollama models
+- Optional: n8n access via Docker or local installation
+
+## Recommended Environment
+
+- CPU or GPU machine capable of running a local LLM
+- At least 8 GB RAM for lightweight models
+- 20 GB of free disk space for local models and reports
+
+## Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/sahillad96/linkedin-professional-guru.git
+cd linkedin-professional-guru
+```
+
+## Step 2: Start Ollama
+
+Install Ollama and pull a local model such as:
+
+```bash
+ollama pull llama3.2
+```
+
+## Step 3: Start n8n
+
+If using Docker, start n8n with the provided assets in the docker directory.
+
+```bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+## Step 4: Import Workflows
+
+Import the workflow definitions from the workflows/v1.0 directory into your n8n instance.
+
+## Step 5: Configure Prompts
+
+Use the prompt templates from the prompts directory to define the AI instructions for:
+
+- ATS analysis
+- Career recommendations
+- Learning roadmap generation
+- Reporting summary
+
+## Step 6: Run a Sample Workflow
+
+Use a sample LinkedIn profile export or mock input file and run the workflow to verify that reports are generated successfully.
+
+## Troubleshooting
+
+- If Ollama is unavailable, confirm the local service is running.
+- If n8n cannot import workflows, verify the workflow JSON structure and version compatibility.
+- If prompts return weak outputs, try a stronger local model or refine the prompt templates.

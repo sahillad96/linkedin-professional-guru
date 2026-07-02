@@ -38,3 +38,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 **Previous**: [Roadmap.md](Roadmap.md) | **Next**: [FutureFeatures.md](FutureFeatures.md)
+## v0.1.0 - 2026-07-02
+
+### Added
+- Initial repository scaffold for LinkedIn Professional Guru
+- Documentation set covering architecture, roadmap, installation, and future features
+- Directory structure for workflows, prompts, reports, assets, screenshots, and Docker assets
+- Open-source project files including README, CONTRIBUTING guide, and MIT license
+
+### Changed
+- Replaced the placeholder repository content with a professional enterprise-style project layout
+
+### Notes
+- This release establishes the foundation for Version 1.0 development and community collaboration

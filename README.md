@@ -169,3 +169,71 @@ Find a bug? Have a suggestion? [Open an issue](https://github.com/sahillad96/lin
 Made with ❤️ by Sahil Lad
 
 </div>
+LinkedIn Professional Guru is an enterprise-grade, open-source AI automation platform for transforming professional profile data into career intelligence. Built around n8n, Ollama, and Docker, the project helps users analyze LinkedIn profiles, evaluate ATS alignment, uncover skill gaps, and generate personalized learning roadmaps using local large language models only.
+
+## Project Purpose
+
+This repository provides a complete foundation for an AI-powered career intelligence workflow that is transparent, privacy-conscious, and fully local-first. It is designed for developers, career strategists, and teams who want to explore AI-assisted professional growth without relying on paid APIs or external services.
+
+## What the Project Includes
+
+- n8n workflows for automation and orchestration
+- Ollama-based local LLM integration
+- Prompt templates for ATS review, skill analysis, and recommendations
+- Documentation for architecture, roadmap, installation, and releases
+- A professional open-source structure suitable for enterprise collaboration
+
+## Core Features
+
+- LinkedIn profile analysis
+- ATS-style evaluation of professional positioning
+- Skill gap identification and role matching
+- Career recommendation generation
+- Learning roadmap preparation
+- Local-first inference with no paid API dependency
+
+## Repository Structure
+
+- workflows/ — versioned n8n workflow definitions
+- prompts/ — AI instruction templates and analysis prompts
+- docs/ — architecture, roadmap, installation, and change history
+- reports/ — generated analysis outputs and summaries
+- screenshots/ — UI and workflow visuals
+- assets/ — branding and supporting media
+- docker/ — container deployment assets
+
+## Documentation
+
+- [Architecture](docs/Architecture.md)
+- [Roadmap](docs/Roadmap.md)
+- [Changelog](docs/Changelog.md)
+- [Installation](docs/Installation.md)
+- [Future Features](docs/FutureFeatures.md)
+- [Contributing Guide](CONTRIBUTING.md)
+
+## Development Roadmap
+
+The project is planned in phases, beginning with a stable Version 1.0 release focused on workflow automation, local prompt execution, and report generation. Subsequent versions will expand capabilities with richer analysis, better formatting, and broader integrations.
+
+## Version Roadmap
+
+- v0.1.0 — repository scaffolding and documentation
+- v1.0.0 — core automation, ATS analysis, and reporting
+- v2.0.0 — advanced prompts and richer recommendations
+- v3.0.0 — analytics expansion and collaboration features
+
+## Getting Started
+
+1. Review the installation guide in [docs/Installation.md](docs/Installation.md).
+2. Start Ollama and prepare a local model.
+3. Launch n8n using the Docker assets in [docker/docker-compose.yml](docker/docker-compose.yml).
+4. Import the workflow definitions from [workflows/v1.0](workflows/v1.0).
+5. Run a sample analysis and review the generated report output.
+
+## Contributing
+
+Contributions are welcome. Please review [CONTRIBUTING.md](CONTRIBUTING.md) before submitting changes.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

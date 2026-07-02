@@ -88,3 +88,26 @@ Thank you for contributing! 🎉
 ---
 
 **Made with ❤️ by the LinkedIn Professional Guru Community**
+# Contributing Guide
+
+Thank you for your interest in contributing to LinkedIn Professional Guru.
+
+## How to Contribute
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make focused, well-documented changes.
+4. Submit a pull request with a clear description of the improvement.
+
+## Project Guidelines
+
+- Keep documentation clear and concise.
+- Prefer local-first and privacy-preserving approaches.
+- Ensure workflows remain compatible with n8n and Ollama.
+- Add or update documentation when changing behavior.
+
+## Pull Request Expectations
+
+- Describe the problem or enhancement clearly.
+- Include screenshots or examples where relevant.
+- Make sure changes are easy to review and maintain.

@@ -1,0 +1,10 @@
+{
+  "name": "Profile Analysis Workflow",
+  "nodes": [],
+  "connections": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "versionId": "v1.0"
+}

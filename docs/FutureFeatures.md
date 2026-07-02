@@ -104,3 +104,19 @@ This document outlines exciting features and enhancements planned for future rel
 ---
 
 **Previous**: [Changelog.md](Changelog.md) | **Back**: [Installation.md](Installation.md)
+# Future Features
+
+## Short-Term Enhancements
+- Add richer profile parsing from LinkedIn exports and PDFs
+- Support multiple local model backends through configurable routing
+- Improve report formatting with templates and visual summaries
+
+## Mid-Term Enhancements
+- Add interactive dashboards for skill evolution and role readiness
+- Introduce comparative analysis across multiple target job roles
+- Add versioned prompt experimentation for improved output quality
+
+## Long-Term Enhancements
+- Expand into recruiter-facing career intelligence workflows
+- Add collaborative team review workflows and shared metrics
+- Integrate with internal HR or talent platforms while preserving local-first design
