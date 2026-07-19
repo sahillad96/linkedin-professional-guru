@@ -1,53 +1,6 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
-
-# Testing
-coverage/
-.nyc_output/
-
-# Production
-build/
-dist/
-.next/
-out/
-
-# Misc
-.DS_Store
-*.log
-*.logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Editor
+__pycache__/
+*.pyc
+.venv/
+.env
 .vscode/
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.swp
-
-# Environment
-.env
-.env.local
-.env.*.local
-.env.production.local
-
-# OS
-Thumbs.db
-.AppleDouble
-.LSOverride
-
-# Docker
-volumes/
-data/
-*.sock
-
-# Build
-*.tsbuildinfo
