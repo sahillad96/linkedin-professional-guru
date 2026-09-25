@@ -2,199 +2,90 @@
 
 ## Version Overview
 
-| Version | Timeline | Focus |
-|---------|----------|-------|
-| 0.1.0   | Jul 2026 | MVP & Foundation |
-| 0.2.0   | Aug 2026 | Enhanced Input |
-| 0.3.0   | Sep 2026 | Resume Analysis |
-| 0.4.0   | Oct 2026 | Job Matching |
-| 0.5.0   | Nov 2026 | Career Intelligence |
-| 0.6.0   | Dec 2026 | Report Generation |
-| 0.7.0   | Jan 2027 | Advanced Features |
-| 1.0.0   | Q2 2027  | Production Ready |
+| Version | Focus | Status |
+|---------|-------|--------|
+| 0.1.0 | MVP foundation | ✅ Complete |
+| 1.2.1 | n8n reliability migration | 🔄 In Progress |
+| 1.3.0 | Production hardening | 📅 Planned |
+| 1.4.0 | Report quality engine | 📅 Planned |
+| 1.5.0 | Accounts and history | 📅 Planned |
+| 1.6.0 | LinkedIn optimization | 📅 Planned |
+| 1.7.0 | Cybersecurity career engine | 📅 Planned |
+| 1.8.0 | Resume and ATS intelligence | 📅 Planned |
+| 1.9.0 | Career dashboard | 📅 Planned |
+| 2.0.0 | AI career agent | 🎯 Long Term |
 
-## Detailed Roadmap
+## 1.2.1 - n8n Reliability Migration
 
-### 0.1.0 - MVP (✅ Complete)
+- Remove n8n from the runtime path
+- Preserve existing workflow behavior
+- Move workflow code into TypeScript
+- Add Gemini server-side integration
+- Add structured validation
+- Add report rendering
+- Keep original n8n exports as migration references
 
-**Features**
-- Docker containerization
-- n8n workflow automation
-- Ollama local LLM integration
-- Basic profile analyzer
-- API endpoints
-- Project documentation
+## 1.3.0 - Production Hardening
 
-**Deliverables**
-- ✅ Production-ready repo structure
-- ✅ Docker Compose setup
-- ✅ Core workflow foundation
-- ✅ Frontend scaffolding
+- Request IDs
+- Input limits
+- Rate limiting
+- Timeout and retry controls
+- Safer logging
+- CI checks
+- Security headers
+- Expanded regression fixtures
 
-### 0.2.0 - Enhanced Input (In Progress)
+## 1.4.0 - Report Quality
 
-**Features**
-- Dynamic profile input UI
-- File upload support (text, PDF)
-- Prompt management dashboard
-- Markdown report generation
-- Report export functionality
+- Evidence-based scoring
+- Skill-gap prioritization
+- Role-alignment analysis
+- Explainable recommendations
+- Better report templates
 
-**Tasks**
-- [ ] Build profile input component
-- [ ] Add file upload handler
-- [ ] Create prompt manager UI
-- [ ] Implement markdown generation
-- [ ] Add export to file
+## 1.5.0 - Accounts and History
 
-### 0.3.0 - Resume Analysis
+- Supabase Auth
+- Saved reports
+- Profile history
+- Report comparison
+- User dashboard
 
-**Features**
-- Resume analyzer workflow
-- ATS compatibility checker
-- Keyword extraction
-- Score-based assessment
-- Improvement suggestions
+## 1.6.0 - LinkedIn Optimization
 
-**Tasks**
-- [ ] Design resume workflow
-- [ ] Build ATS checker logic
-- [ ] Create scoring algorithm
-- [ ] Build UI components
-- [ ] Implement report generation
+- Headline analysis
+- About section analysis
+- Experience rewrite assistance
+- Skills positioning
+- Profile completeness checks
 
-### 0.4.0 - Job Matching
+## 1.7.0 - Cybersecurity Career Engine
 
-**Features**
-- Job description analyzer
-- Skill matching engine
-- Resume vs JD comparison
-- Match score calculation
-- Gap analysis
+- Target-role skill matrix
+- Gap prioritization
+- Learning roadmap
+- Project recommendations
+- Certification tracking
 
-**Tasks**
-- [ ] Build job matching workflow
-- [ ] Create comparison engine
-- [ ] Design matching UI
-- [ ] Generate match reports
-- [ ] Add visualization
+## 1.8.0 - Resume and ATS Intelligence
 
-### 0.5.0 - Career Intelligence
+- Resume ingestion
+- Job-description matching
+- Keyword coverage
+- Evidence-strength analysis
+- Resume improvement suggestions
 
-**Features**
-- Career roadmap generation
-- Learning path recommendations
-- Certification suggestions
-- Skill gap identification
-- Career progression insights
+## 1.9.0 - Career Dashboard
 
-**Tasks**
-- [ ] Build roadmap generator
-- [ ] Create learning engine
-- [ ] Design career dashboard
-- [ ] Add progress tracking
-- [ ] Build visualization components
+- Skill progress
+- Target-role readiness history
+- Report comparisons
+- Milestone tracking
 
-### 0.6.0 - Report Generation
+## 2.0.0 - AI Career Agent
 
-**Features**
-- HTML report generation
-- PDF report export
-- Custom report templates
-- Email report delivery
-- Report sharing
-
-**Tasks**
-- [ ] Implement HTML template
-- [ ] Add PDF generation
-- [ ] Create template system
-- [ ] Build export UI
-- [ ] Add sharing features
-
-### 0.7.0 - Advanced Features
-
-**Features**
-- Multi-agent workflows
-- Workflow customization
-- Advanced analytics
-- Performance optimization
-- Caching layer
-
-**Tasks**
-- [ ] Design multi-agent system
-- [ ] Build workflow builder
-- [ ] Add analytics dashboard
-- [ ] Implement caching
-- [ ] Performance tuning
-
-### 0.8.0 - Enterprise Features
-
-**Features**
-- Vector database (Qdrant)
-- RAG implementation
-- Knowledge base
-- Advanced search
-- Semantic analysis
-
-**Tasks**
-- [ ] Integrate vector DB
-- [ ] Build RAG pipeline
-- [ ] Create knowledge base
-- [ ] Implement semantic search
-- [ ] Add similarity matching
-
-### 0.9.0 - Optimization
-
-**Features**
-- Performance optimization
-- Database indexing
-- Query optimization
-- Caching strategies
-- Load testing
-
-**Tasks**
-- [ ] Benchmark performance
-- [ ] Optimize queries
-- [ ] Implement caching
-- [ ] Load testing
-- [ ] Documentation updates
-
-### 1.0.0 - Production Ready
-
-**Features**
-- Full feature set
-- Enterprise deployment
-- Monitoring and logging
-- Authentication system
-- API versioning
-
-**Tasks**
-- [ ] Security audit
-- [ ] Performance testing
-- [ ] Documentation complete
-- [ ] Release preparation
-- [ ] Public launch
-
-## Future Enhancements
-
-### Phase 2 (2027+)
-- Mobile application
-- Team collaboration features
-- Advanced AI models
-- Custom training
-- API marketplace
-
-### Potential Integrations
-- LinkedIn API (for real profile data)
-- Indeed API
-- GitHub API
-- Email services
-- Slack integration
-
-## Community Input
-
-We welcome feature requests! Open an issue or discussion to suggest features.
-
-## Contributing to Roadmap
-
-Interested in helping? Check [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
+- Structured career memory
+- Goal tracking
+- Context-aware recommendations
+- Periodic career reviews
