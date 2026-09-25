@@ -4,6 +4,20 @@ All notable changes are documented here.
 
 ## [1.2.1] - 2026-09-25
 
+### September 2026 Release Scope
+
+- n8n-to-Next.js migration
+- LinkedIn profile analysis hardening
+- Resume analyzer foundation
+- Resume section and skills extraction
+- ATS-oriented compatibility checks
+- Keyword and target-role comparison
+- Unified career report generation
+- Markdown/HTML/print-ready report foundation
+- Validation and regression testing
+- Production error handling
+- Free-first Cloudflare deployment foundation
+
 ### Changed
 
 - Began migration from n8n runtime orchestration to standalone Next.js + TypeScript architecture.
@@ -27,6 +41,8 @@ All notable changes are documented here.
 - Updated installation guide
 - Updated development guide
 - Reworked roadmap
+- Added migration documentation
+- Added repository documentation format rules
 
 ## [0.1.0] - 2026-07-02
 
