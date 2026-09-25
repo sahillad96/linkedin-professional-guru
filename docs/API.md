@@ -6,124 +6,61 @@
 http://localhost:3000/api
 ```
 
-## Endpoints
+## Health
 
-### Analyze LinkedIn Profile
+`GET /api/health`
 
-Analyze a LinkedIn profile and return career insights.
-
-**Request**
-
-```http
-POST /api/analyze
-Content-Type: application/json
-
-{
-  "profile": "LinkedIn profile text here..."
-}
-```
-
-**Response**
+Expected response:
 
 ```json
 {
-  "success": true,
-  "analysis": {
-    "summary": "...",
-    "strengths": [...],
-    "weaknesses": [...],
-    "recommendations": [...]
-  },
-  "timestamp": "2026-07-02T12:00:00Z"
+  "status": "ok",
+  "version": "1.2.1"
 }
 ```
 
-**Error Response**
+## Evaluate Profile
+
+`POST /api/evaluate`
+
+Request:
 
 ```json
 {
-  "success": false,
-  "error": "Error message here",
-  "timestamp": "2026-07-02T12:00:00Z"
+  "name": "Test User",
+  "currentRole": "IT Support Engineer",
+  "experience": "4 years",
+  "targetRole": "Cybersecurity Engineer",
+  "skills": [
+    "Windows",
+    "Networking",
+    "Active Directory"
+  ]
 }
 ```
 
-## Request/Response
+The exact request schema is defined by the application validation module.
 
-### Content Types
+## Error Responses
 
-- `Content-Type: application/json`
+`400` for invalid input.
 
-### Status Codes
+`429` when provider or application rate limits apply.
 
-| Code | Meaning |
-|------|----------|
-| 200  | Success |
-| 400  | Bad request |
-| 500  | Server error |
+`500` for unexpected server failures.
 
-## Examples
+Errors must not expose credentials, stack traces, or internal secrets.
 
-### Using cURL
+## Testing With cURL
 
 ```bash
-curl -X POST http://localhost:3000/api/analyze \
+curl -X POST http://localhost:3000/api/evaluate \
   -H "Content-Type: application/json" \
   -d '{
-    "profile": "John Doe, Software Engineer with 5 years experience in Python and JavaScript"
+    "name": "Test User",
+    "currentRole": "IT Support Engineer",
+    "experience": "4 years",
+    "targetRole": "Cybersecurity Engineer",
+    "skills": ["Windows", "Networking", "Active Directory"]
   }'
 ```
-
-### Using JavaScript
-
-```javascript
-const response = await fetch('/api/analyze', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    profile: 'Your LinkedIn profile text here...',
-  }),
-});
-
-const data = await response.json();
-console.log(data);
-```
-
-### Using Python
-
-```python
-import requests
-
-response = requests.post(
-    'http://localhost:3000/api/analyze',
-    json={
-        'profile': 'Your LinkedIn profile text here...'
-    }
-)
-
-result = response.json()
-print(result)
-```
-
-## Rate Limiting
-
-Currently no rate limiting. Future versions may implement:
-- Per-IP rate limits
-- Per-session rate limits
-- Queue-based processing
-
-## Authentication
-
-Currently no authentication required. Future versions will add:
-- Session tokens
-- API keys
-- OAuth integration
-
-## Versioning
-
-API follows semantic versioning:
-- Breaking changes: New major version
-- New features: New minor version
-- Bug fixes: New patch version
