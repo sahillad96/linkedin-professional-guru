@@ -2,12 +2,13 @@
 
 <div align="center">
 
-**AI-Powered Career Intelligence Platform Using 100% Local AI**
+**AI-Powered Career Intelligence Platform**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version: 0.1.0](https://img.shields.io/badge/version-0.1.0-green.svg)](CHANGELOG.md)
-[![Docker Ready](https://img.shields.io/badge/docker-ready-blue.svg)]()
-[![Next.js 13+](https://img.shields.io/badge/next.js-13+-black.svg)](https://nextjs.org)
+[![Version: 1.2.1](https://img.shields.io/badge/version-1.2.1-green.svg)](CHANGELOG.md)
+[![Cloudflare Ready](https://img.shields.io/badge/cloudflare-ready-orange.svg)]()
+[![Next.js](https://img.shields.io/badge/next.js-black.svg)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/typescript-blue.svg)](https://www.typescriptlang.org)
 
 [🚀 Features](#features) • [📖 Docs](#documentation) • [🗺️ Roadmap](#roadmap) • [🤝 Contribute](#contributing)
 
@@ -17,51 +18,68 @@
 
 ## Overview
 
-LinkedIn Professional Guru is a modern web application that helps professionals improve their careers using **100% local AI**. Analyze your LinkedIn profile, resume, and career goals through an intuitive interface powered by local language models.
+LinkedIn Professional Guru is a career intelligence platform for analyzing LinkedIn profiles, career goals, skills, and professional positioning.
+
+The current migration removes n8n from the runtime path and moves workflow logic into a standalone Next.js + TypeScript application.
 
 ### Key Benefits
 
-- **🔒 Privacy First** - All data stays on your machine
-- **💰 Zero Cost** - No API subscriptions or paid services
-- **🌐 Offline Ready** - Works completely disconnected
-- **⚙️ Full Control** - Self-hosted, fully customizable
+- **🔒 Privacy First** - Keep sensitive profile data under your application control
+- **💰 Free-First Architecture** - Prefer free and open-source services where practical
+- **⚙️ No n8n Runtime Dependency** - Application logic runs directly in TypeScript
+- **🧩 Modular Design** - Validation, prompting, AI integration, and reporting stay separated
+- **🌐 Cloudflare Ready** - Designed for low-cost edge deployment
 
 ---
 
 ## Features
 
-### Current (v0.1.0)
-✅ Docker-based environment  
-✅ Ollama local LLM integration  
-✅ n8n workflow automation  
-✅ LinkedIn Profile Analyzer  
-✅ JSON parsing & structured extraction
+### Current (v1.2.1)
+
+✅ LinkedIn profile analysis workflow migration  
+✅ Next.js + TypeScript application architecture  
+✅ Server-side Gemini integration  
+✅ Structured JSON validation  
+✅ Input normalization and validation  
+✅ Report generation and responsive report UI  
+✅ API health endpoint  
+✅ Retry and provider error handling  
+✅ Print-friendly reports  
+✅ n8n workflow source retained for migration reference  
 
 ### Planned
+
 📋 Resume Analyzer  
 🎯 ATS Compatibility Checker  
 📊 Job Description Matching  
 🧠 Career Intelligence Dashboard  
 📚 Learning Roadmaps & Certifications  
-📄 Report Generation (Markdown, HTML, PDF)
+📄 Report Generation (Markdown, HTML, PDF)  
+👤 User Accounts & Report History  
+🔐 Production Rate Limiting and Abuse Protection  
 
 ---
 
 ## Tech Stack
 
-**Frontend**: Next.js • React • TypeScript • Tailwind CSS • shadcn/ui  
-**Backend**: n8n • Node.js  
-**AI**: Ollama • Local LLMs  
-**Infrastructure**: Docker • Docker Compose • Nginx
+**Frontend**: Next.js • React • TypeScript • Tailwind CSS  
+**Backend**: Next.js Server API • Node.js  
+**AI**: Gemini API  
+**Validation**: Zod  
+**Source Control**: GitHub  
+**Deployment**: Cloudflare  
+**Future Persistence**: Supabase Free Tier  
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- Docker & Docker Compose
-- 4GB RAM (8GB recommended)
-- 10GB disk space
+
+- Node.js 20+
+- npm
+- Git
+- Gemini API key for AI evaluation
 
 ### Installation
 
@@ -70,18 +88,22 @@ LinkedIn Professional Guru is a modern web application that helps professionals 
 git clone https://github.com/sahillad96/linkedin-professional-guru.git
 cd linkedin-professional-guru
 
+# Install dependencies
+npm install
+
 # Setup environment
-cp .env.example .env
+cp .env.example .env.local
 
-# Start services
-docker-compose up -d
-
-# Access the platform
-# Frontend: http://localhost:3000
-# n8n: http://localhost:5678
+# Start development server
+npm run dev
 ```
 
-For detailed setup, see [Installation Guide](./docs/Installation.md).
+Access the application:
+
+- **Frontend**: http://localhost:3000
+- **Health Check**: http://localhost:3000/api/health
+
+For detailed setup, see [Installation Guide](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Installation.md).
 
 ---
 
@@ -89,31 +111,42 @@ For detailed setup, see [Installation Guide](./docs/Installation.md).
 
 ```
 ┌─────────────────────────────┐
-│  Next.js Web Interface      │
+│      Next.js Web App        │
+│   Form + Report Interface   │
 └──────────────┬──────────────┘
-               │ REST API
+               │
                ▼
 ┌─────────────────────────────┐
-│  n8n Automation Engine      │
+│      /api/evaluate          │
+│ Validation + Orchestration  │
 └──────────────┬──────────────┘
-               │ LLM Requests
+               │
                ▼
 ┌─────────────────────────────┐
-│  Ollama Local LLM Server    │
+│      Gemini API             │
+│   Structured Evaluation     │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│   Zod + Report Builder      │
 └─────────────────────────────┘
 ```
 
-See [Architecture Guide](./docs/Architecture.md) for details.
+The original n8n workflows are retained under `n8n-source/` as migration references and are not required at runtime.
+
+See [Architecture Guide](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Architecture.md) for details.
 
 ---
 
 ## Documentation
 
-- [Installation Guide](./docs/Installation.md) - Setup and deployment
-- [Development Guide](./docs/Development.md) - Development workflow
-- [Architecture](./docs/Architecture.md) - System design
-- [API Reference](./docs/API.md) - Endpoints and usage
-- [Roadmap](./docs/Roadmap.md) - Feature timeline
+- [Installation Guide](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Installation.md) - Local setup and deployment
+- [Development Guide](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Development.md) - Development workflow
+- [Architecture](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Architecture.md) - System design
+- [API Reference](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/API.md) - Endpoints and request formats
+- [Roadmap](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Roadmap.md) - Feature timeline
+- [Migration](https://github.com/sahillad96/linkedin-professional-guru/blob/main/MIGRATION.md) - n8n to Next.js mapping
 
 ---
 
@@ -121,13 +154,16 @@ See [Architecture Guide](./docs/Architecture.md) for details.
 
 ```
 linkedin-professional-guru/
-├── app/                  # Next.js application
+├── app/                  # Next.js application and API routes
 ├── components/           # React components
-├── automation/           # n8n workflows & prompts
-├── docker/               # Docker configuration
+├── lib/                  # Validation, prompts, AI, and report logic
+├── types/                # Shared TypeScript types
+├── tests/                # Unit and integration tests
+├── n8n-source/           # Original n8n workflow exports
+├── docker/               # Legacy/local infrastructure assets
 ├── docs/                 # Documentation
 ├── public/               # Static assets
-├── .github/              # GitHub templates
+├── .github/              # GitHub workflows and templates
 └── scripts/              # Utility scripts
 ```
 
@@ -137,20 +173,27 @@ linkedin-professional-guru/
 
 | Version | Target | Status |
 |---------|--------|--------|
-| 0.1.0   | MVP    | ✅ Complete |
-| 0.2.0   | Enhanced Input | 🔄 In Progress |
-| 0.3.0   | Resume & ATS | 📅 Planned |
-| 1.0.0   | Production | 🎯 Target |
+| 0.1.0 | MVP foundation | ✅ Complete |
+| 1.2.1 | n8n reliability migration | 🔄 In Progress |
+| 1.3.0 | Production hardening | 📅 Planned |
+| 1.4.0 | Report quality engine | 📅 Planned |
+| 1.5.0 | Accounts and report history | 📅 Planned |
+| 1.6.0 | LinkedIn optimization tools | 📅 Planned |
+| 1.7.0 | Cybersecurity career engine | 📅 Planned |
+| 1.8.0 | Resume and ATS intelligence | 📅 Planned |
+| 1.9.0 | Career progress dashboard | 📅 Planned |
+| 2.0.0 | AI career agent | 🎯 Long Term |
 
-Detailed roadmap: [Roadmap.md](./docs/Roadmap.md)
+Detailed roadmap: [Roadmap.md](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs/Roadmap.md)
 
 ---
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](https://github.com/sahillad96/linkedin-professional-guru/blob/main/CONTRIBUTING.md) for guidelines.
 
 **Quick Steps:**
+
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature/your-feature`
 3. Commit changes: `git commit -m 'Add feature'`
@@ -160,13 +203,13 @@ We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for gu
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](https://github.com/sahillad96/linkedin-professional-guru/blob/main/LICENSE) file for details.
 
 ---
 
 ## Support
 
-- 📖 [Documentation](./docs/)
+- 📖 [Documentation](https://github.com/sahillad96/linkedin-professional-guru/blob/main/docs)
 - 🐛 [Issues](https://github.com/sahillad96/linkedin-professional-guru/issues)
 - 💬 [Discussions](https://github.com/sahillad96/linkedin-professional-guru/discussions)
 
