@@ -18,17 +18,17 @@
 
 ## Overview
 
-LinkedIn Professional Guru is a career intelligence platform for analyzing LinkedIn profiles, career goals, skills, and professional positioning.
+LinkedIn Professional Guru is a career intelligence platform for analyzing LinkedIn profiles, career goals, skills, resumes, and professional positioning.
 
-The current migration removes n8n from the runtime path and moves workflow logic into a standalone Next.js + TypeScript application.
+The September 2026 release cycle focuses on removing the n8n runtime dependency, strengthening profile analysis, and adding the first resume and ATS intelligence capabilities.
 
 ### Key Benefits
 
-- **🔒 Privacy First** - Keep sensitive profile data under your application control
+- **🔒 Privacy First** - Keep sensitive career data under your application control
 - **💰 Free-First Architecture** - Prefer free and open-source services where practical
 - **⚙️ No n8n Runtime Dependency** - Application logic runs directly in TypeScript
-- **🧩 Modular Design** - Validation, prompting, AI integration, and reporting stay separated
-- **🌐 Cloudflare Ready** - Designed for low-cost edge deployment
+- **🧩 Modular Design** - Validation, prompting, AI integration, scoring, and reporting stay separated
+- **🌐 Cloudflare Ready** - Designed for low-cost deployment
 
 ---
 
@@ -47,16 +47,39 @@ The current migration removes n8n from the runtime path and moves workflow logic
 ✅ Print-friendly reports  
 ✅ n8n workflow source retained for migration reference  
 
-### Planned
+### September 2026 Release Scope
 
-📋 Resume Analyzer  
-🎯 ATS Compatibility Checker  
+🔄 n8n-to-Next.js workflow migration  
+🔄 LinkedIn Profile Analyzer hardening  
+🔄 Enhanced LinkedIn profile input  
+🔄 Profile completeness analysis  
+🔄 Skills extraction and categorization  
+🔄 Strengths and gap analysis  
+🔄 Target-role alignment analysis  
+🔄 Evidence-based recommendations  
+🔄 Resume Analyzer  
+🔄 Resume text/PDF ingestion foundation  
+🔄 Resume section extraction  
+🔄 Resume keyword extraction  
+🔄 ATS compatibility checks  
+🔄 Resume-to-target-role comparison  
+🔄 Resume improvement suggestions  
+🔄 Structured career report generation  
+🔄 Markdown/HTML report output  
+🔄 Print/PDF-ready report layout  
+🔄 Automated validation and regression tests  
+🔄 Production error handling and retry controls  
+🔄 Free-first Cloudflare deployment foundation  
+
+### Planned After September
+
 📊 Job Description Matching  
 🧠 Career Intelligence Dashboard  
 📚 Learning Roadmaps & Certifications  
-📄 Report Generation (Markdown, HTML, PDF)  
 👤 User Accounts & Report History  
+📈 Career Progress Tracking  
 🔐 Production Rate Limiting and Abuse Protection  
+🤖 AI Career Agent  
 
 ---
 
@@ -112,7 +135,7 @@ For detailed setup, see [Installation Guide](https://github.com/sahillad96/linke
 ```
 ┌─────────────────────────────┐
 │      Next.js Web App        │
-│   Form + Report Interface   │
+│ LinkedIn + Resume Interface │
 └──────────────┬──────────────┘
                │
                ▼
@@ -129,7 +152,8 @@ For detailed setup, see [Installation Guide](https://github.com/sahillad96/linke
                │
                ▼
 ┌─────────────────────────────┐
-│   Zod + Report Builder      │
+│ Zod + Scoring + Report      │
+│ Builder + Export Layer      │
 └─────────────────────────────┘
 ```
 
@@ -156,11 +180,11 @@ See [Architecture Guide](https://github.com/sahillad96/linkedin-professional-gur
 linkedin-professional-guru/
 ├── app/                  # Next.js application and API routes
 ├── components/           # React components
-├── lib/                  # Validation, prompts, AI, and report logic
+├── lib/                  # Validation, prompts, AI, scoring, reports
 ├── types/                # Shared TypeScript types
 ├── tests/                # Unit and integration tests
 ├── n8n-source/           # Original n8n workflow exports
-├── docker/               # Legacy/local infrastructure assets
+├── automation/           # Legacy workflow references
 ├── docs/                 # Documentation
 ├── public/               # Static assets
 ├── .github/              # GitHub workflows and templates
@@ -174,13 +198,13 @@ linkedin-professional-guru/
 | Version | Target | Status |
 |---------|--------|--------|
 | 0.1.0 | MVP foundation | ✅ Complete |
-| 1.2.1 | n8n reliability migration | 🔄 In Progress |
-| 1.3.0 | Production hardening | 📅 Planned |
-| 1.4.0 | Report quality engine | 📅 Planned |
-| 1.5.0 | Accounts and report history | 📅 Planned |
-| 1.6.0 | LinkedIn optimization tools | 📅 Planned |
-| 1.7.0 | Cybersecurity career engine | 📅 Planned |
-| 1.8.0 | Resume and ATS intelligence | 📅 Planned |
+| 1.2.1 | n8n reliability migration | 🔄 September 2026 |
+| 1.3.0 | Production hardening | 🔄 September 2026 |
+| 1.4.0 | Resume + ATS intelligence | 🔄 September 2026 |
+| 1.5.0 | Job description matching | 📅 Planned |
+| 1.6.0 | Career intelligence dashboard | 📅 Planned |
+| 1.7.0 | Learning roadmap + certifications | 📅 Planned |
+| 1.8.0 | Accounts and report history | 📅 Planned |
 | 1.9.0 | Career progress dashboard | 📅 Planned |
 | 2.0.0 | AI career agent | 🎯 Long Term |
 
